@@ -9,7 +9,7 @@ ink = { version = "4.2.0", default-features = false }
 
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2.6", default-features = false, features = ["derive"], optional = true }
-interfaces = { path = "../interfaces", default-features = false, features = ["ink-as-dependency"] }
+istorage = { path = "../interfaces/istorage", default-features = false, features = ["ink-as-dependency"] }
 #special_trait = { path = "../interfaces/special", default-features = false, features = ["ink-as-dependency"] }
 
 [dev-dependencies]
@@ -24,7 +24,7 @@ std = [
     "ink/std",
     "scale/std",
     "scale-info/std",
-    "interfaces/std",
+    "istorage/std",
 ]
 ink-as-dependency = []
 e2e-tests = []

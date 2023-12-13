@@ -2,7 +2,7 @@
 
 #[ink::contract]
 mod storage {
-    use interfaces::IStorage;
+    use istorage::IStorage;
     #[ink(storage)]
     pub struct Storage {
         /// Almacena el valor actual de nuestro contrato.
@@ -35,10 +35,6 @@ mod storage {
         #[ink(message)]
         fn retrieve(&self) -> u128 {
             self._retrieve()
-        }
-        #[ink(message)]
-        fn retrieve2(&self, data: AccountId){
-            self._retrieve();
         }
         
     }
