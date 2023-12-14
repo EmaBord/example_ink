@@ -2,18 +2,40 @@
 
 #[ink::contract]
 mod storage {
+    use ink::storage::Mapping;
     use istorage::IStorage;
+
     #[ink(storage)]
     pub struct Storage {
-        /// Almacena el valor actual de nuestro contrato.
         value: u128,
+        projects: Mapping<AccountId, Project>,
     }
 
+    #[derive(scale::Decode, scale::Encode)]
+    #[cfg_attr(
+        feature = "std",
+        derive(
+            Debug,
+            PartialEq,
+            Eq,
+            scale_info::TypeInfo,
+            ink::storage::traits::StorageLayout
+        )
+    )]
+    pub struct Project {
+        name: ink::prelude::string::String,
+        description: ink::prelude::string::String,
+        owner: AccountId,
+        status: u128,
+        available_credits: u128,
+        total_credits: u128,
+    }
+    
     impl Storage {
         /// El constructor inicializa el valor inicial del contrato en 0.
         #[ink(constructor)]
         pub fn new() -> Self {
-            Self { value: 0 }
+            Self { value: 0 , projects: ink::storage::Mapping::default()}
         }
 
         fn _retrieve(&self) -> u128 {
